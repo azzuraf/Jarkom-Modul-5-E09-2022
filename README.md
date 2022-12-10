@@ -216,6 +216,11 @@ OPTIONS=""
 ## Penyelesaian Soal
 ### Soal 1
 **Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE.** <br/><br/>
+- Yang pertama masukan command ```ip a``` pada Strix untuk mendapatkan ip dari strix
+![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/IPstrix.png)
+- selanjutnya lakukan testing di strix
+<br/><br/>
+![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no1_test.png)
 ### Soal 2
 **Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**<br/><br/>
 Untuk menyelesaikannya, kita perlu memasukkan setup iptables pada WISE yang merupakan DHCP server.
