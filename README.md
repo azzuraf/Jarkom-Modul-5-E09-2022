@@ -7,6 +7,7 @@
 |  Azzura Ferliani Ramadhani  | 5025201190 |
 |  Ingwer Ludwig Nommensen | 5025201259 |
 ## Subnetting
+![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Subnetting.png)
 ## IP Tree
 ## Configuration
 #### Strix
