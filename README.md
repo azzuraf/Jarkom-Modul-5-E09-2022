@@ -10,6 +10,7 @@
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Subnetting.png)
 ## IP Tree
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Tree.png)
+
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Pembagian%20IP.png)
 ## Configuration
 #### Strix
