@@ -9,7 +9,6 @@
 ## Subnetting
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Subnetting.png)
 ## IP Tree
-![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Tree.png)
 ## Configuration
 #### Strix
 ```
@@ -216,12 +215,6 @@ OPTIONS=""
 ## Penyelesaian Soal
 ### Soal 1
 **Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE.** <br/><br/>
-- Yang pertama masukan command ```ip a``` pada Strix untuk mendapatkan ip dari strix
-![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/IPstrix.png)
-- selanjutnya lakukan testing di strix
-<br/><br/>
-![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no1_test.png)
-
 ### Soal 2
 **Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**<br/><br/>
 Untuk menyelesaikannya, kita perlu memasukkan setup iptables pada WISE yang merupakan DHCP server.
@@ -229,13 +222,19 @@ Untuk menyelesaikannya, kita perlu memasukkan setup iptables pada WISE yang meru
 iptables -A INPUT ! -s 10.8.0.0/21 -p tcp -j DROP
 iptables -A INPUT ! -s 10.8.0.0/21 -p udp -j DROP
 ```
+<br/>**Testing:**<br/><br/>
+![Test no.2](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no2.png)
 ### Soal 3
 **Loid meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 2 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.**<br/><br/>
 Pada Eden dan WISE akan dimasukkan setup iptables seperti berikut:
 ```
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j DROP
 ```
-Dimana ```--connlimit-above 2``` digunakan untuk memberikan limit koneksi ICMP dan juga tidak lupa menambahkan ```DROP``` agar koneksi selain 2 koneksi tersebut didrop.
+Dimana ```--connlimit-above 2``` digunakan untuk memberikan limit koneksi ICMP dan juga tidak lupa menambahkan ```DROP``` agar koneksi selain 2 koneksi tersebut didrop.<br/><br/>
+**Testing:**<br/><br/>
+![Test no.3 Desmond](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no3_desmond.png)<br/>
+![Test no.3 Briar](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no3_briar.png)<br/>
+![Test no.3 Blackbell](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no3_black.png)
 ### Soal 4
 **Akses menuju Web Server hanya diperbolehkan disaat jam kerja yaitu Senin sampai Jumat pada pukul 07.00 - 16.00.** <br/><br/>
 ### Soal 5
