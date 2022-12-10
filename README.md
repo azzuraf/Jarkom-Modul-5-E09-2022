@@ -218,6 +218,7 @@ OPTIONS=""
 **Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE.** <br/><br/>
 - Yang pertama masukan command ```ip a``` pada Strix untuk mendapatkan ip dari strix
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/IPstrix.png)
+
 - selanjutnya lakukan testing di strix
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no1_test.png)
 
