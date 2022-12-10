@@ -8,6 +8,8 @@
 |  Ingwer Ludwig Nommensen | 5025201259 |
 ## Subnetting
 ![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Subnetting.png)
+Pembagian IP
+![](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/Pembagian%20IP.png)
 ## IP Tree
 ## Configuration
 #### Strix
