@@ -211,3 +211,24 @@ INTERFACES="eth0 eth1 eth2 eth3"
 # Additional options that are passed to the DHCP relay daemon?
 OPTIONS=""
 ```
+## Penyelesaian Soal
+### Soal 1
+**Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE.** <br/><br/>
+### Soal 2
+**Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**<br/><br/>
+Untuk menyelesaikannya, kita perlu memasukkan setup iptables pada WISE yang merupakan DHCP server.
+```
+iptables -A INPUT ! -s 10.8.0.0/21 -p tcp -j DROP
+iptables -A INPUT ! -s 10.8.0.0/21 -p udp -j DROP
+```
+### Soal 3
+**Loid meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 2 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.**<br/><br/>
+Pada Eden dan WISE akan dimasukkan setup iptables seperti berikut:
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j DROP
+```
+Dimana ```--connlimit-above 2``` digunakan untuk memberikan limit koneksi ICMP dan juga tidak lupa menambahkan ```DROP``` agar koneksi selain 2 koneksi tersebut didrop.
+### Soal 4
+**Akses menuju Web Server hanya diperbolehkan disaat jam kerja yaitu Senin sampai Jumat pada pukul 07.00 - 16.00.** <br/><br/>
+### Soal 5
+**Karena kita memiliki 2 Web Server, Loid ingin Ostania diatur sehingga setiap request dari client yang mengakses Garden dengan port 80 akan didistribusikan secara bergantian pada SSS dan Garden secara berurutan dan request dari client yang mengakses SSS dengan port 443 akan didistribusikan secara bergantian pada Garden dan SSS secara berurutan.** <br/><br/>
