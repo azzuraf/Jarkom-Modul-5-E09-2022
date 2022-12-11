@@ -260,9 +260,6 @@ iptables -A FORWARD -d 10.26.19.0/29 -m time --timestart 16:01 --timestop 23:59 
 
 **Untuk mengubah date pada Ostania untuk testing gunakan perintah berikut**
 
-```
-date --set "16 Sep 2002 00:00:00"
-```
 ![Test no.4](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no4_black.png)
 ![Test no.4 eden ](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no4_eden.png)
 
@@ -274,10 +271,5 @@ Karena ingin dibuat merata, maka kita tinggal mengubah destination address setia
 10.26.19.2 : IP Garden <br>
 10.26.19.3 : IP SSS <br>
 
-Pada Ostania : <br>
-```
-iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.26.19.2 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.19.3:80
 
-iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.26.19.3 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.19.2:443
-```
 ![Test no.5](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no5.png)
