@@ -250,11 +250,16 @@ Hanya bisa diakses pada Senin-Kamis 07:00-16:00
 **Perlu diketahuai bahwa** <br>
 **Pada subnet 10.26.19.0/29 terdapat IP Garden, SSS, serta interface pada Ostania yang terhubung** <br>
 
-**Pada Ostania :** <br>
+Pada Node Eden (DNS Server)
+```shell
+iptables -A INPUT -s 10.26.7.136/29 -m time --timestart 07:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -s 10.26.7.136/29 -j REJECT
 ```
-iptables -A FORWARD -d 10.26.19.0/29 -m time --weekdays Sat,Sun -j REJECT
-iptables -A FORWARD -d 10.26.19.0/29 -m time --timestart 00:00 --timestop 06:59 --weekdays Mon,Tue,Wed,Thu,Fri -j REJECT
-iptables -A FORWARD -d 10.26.19.0/29 -m time --timestart 16:01 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j REJECT
+
+Pada Node Garden dan SSS (Web Server)
+```shell
+iptables -A INPUT -m time --timestart 07:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -j REJECT
 ```
 **Hati-hati karena interface Ostania yang terhubung ke Garden & SSS juga terikut tidak bisa dihubungi**
 
@@ -271,5 +276,11 @@ Karena ingin dibuat merata, maka kita tinggal mengubah destination address setia
 10.26.19.2 : IP Garden <br>
 10.26.19.3 : IP SSS <br>
 
+```shell
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.26.7.138 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.7.138:80
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.26.7.138 -j DNAT --to-destination 10.26.7.139:80
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.26.7.139 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.7.139:443
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.26.7.139 -j DNAT --to-destination 10.26.7.138:443
+```
 
 ![Test no.5](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no5.png)
