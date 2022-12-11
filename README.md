@@ -227,8 +227,8 @@ OPTIONS=""
 **Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**<br/><br/>
 Untuk menyelesaikannya, kita perlu memasukkan setup iptables pada WISE yang merupakan DHCP server.
 ```
-iptables -A INPUT ! -s 10.8.0.0/21 -p tcp -j DROP
-iptables -A INPUT ! -s 10.8.0.0/21 -p udp -j DROP
+iptables -A INPUT ! -s 10.26.0.0/21 -p tcp -j DROP
+iptables -A INPUT ! -s 10.26.0.0/21 -p udp -j DROP
 ```
 <br/>**Testing:**<br/><br/>
 ![Test no.2](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no2.png)
