@@ -245,5 +245,36 @@ Dimana ```--connlimit-above 2``` digunakan untuk memberikan limit koneksi ICMP d
 ![Test no.3 Blackbell](https://github.com/azzuraf/Jarkom-Modul-5-E09-2022/blob/main/file%20m5/no3_black.png)
 ### Soal 4
 **Akses menuju Web Server hanya diperbolehkan disaat jam kerja yaitu Senin sampai Jumat pada pukul 07.00 - 16.00.** <br/><br/>
+Hanya bisa diakses pada Senin-Kamis 07:00-16:00
+
+**Perlu diketahuai bahwa** <br>
+**Pada subnet 10.26.19.0/29 terdapat IP Garden, SSS, serta interface pada Ostania yang terhubung** <br>
+
+**Pada Ostania :** <br>
+```
+iptables -A FORWARD -d 10.26.19.0/29 -m time --weekdays Sat,Sun -j REJECT
+iptables -A FORWARD -d 10.26.19.0/29 -m time --timestart 00:00 --timestop 06:59 --weekdays Mon,Tue,Wed,Thu,Fri -j REJECT
+iptables -A FORWARD -d 10.26.19.0/29 -m time --timestart 16:01 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j REJECT
+```
+**Hati-hati karena interface Ostania yang terhubung ke Garden & SSS juga terikut tidak bisa dihubungi**
+
+**Untuk mengubah date pada Ostania untuk testing gunakan perintah berikut**
+
+```
+date --set "16 Sep 2002 00:00:00"
+```
+
 ### Soal 5
 **Karena kita memiliki 2 Web Server, Loid ingin Ostania diatur sehingga setiap request dari client yang mengakses Garden dengan port 80 akan didistribusikan secara bergantian pada SSS dan Garden secara berurutan dan request dari client yang mengakses SSS dengan port 443 akan didistribusikan secara bergantian pada Garden dan SSS secara berurutan.** <br/><br/>
+
+Karena ingin dibuat merata, maka kita tinggal mengubah destination address setiap paket kelipatan 2. Untuk mengubah destination address, digunakanlah PREROUTING
+
+10.26.19.2 : IP Garden <br>
+10.26.19.3 : IP SSS <br>
+
+Pada Ostania : <br>
+```
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.26.19.2 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.19.3:80
+
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.26.19.3 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.26.19.2:443
+```
